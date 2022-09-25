@@ -296,6 +296,10 @@
                                     @endif
                             
                                 @endif
+                                @php
+                                    $questions = App\Models\Question::get();
+                                    $step_count = 1;
+                                @endphp
                                 <div class="rainbow new-step-wizard">
                                     <div id="smartwizard">
                                         <ul class="nav display-none">
@@ -304,39 +308,21 @@
                                                     Step 1
                                                 </a>
                                             </li>
+                                            @foreach ($questions as $index => $item)
+                                                @php
+                                                    $step_count = $step_count+1;
+                                                @endphp
+                                                <li>
+                                                    <a class="nav-link" href="#step-{{$step_count}}">
+                                                        Step {{$step_count}}
+                                                    </a>
+                                                </li>
+                                                
+                                            @endforeach
+
                                             <li>
-                                                <a class="nav-link" href="#step-2">
-                                                    Step 2
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="nav-link" href="#step-3">
-                                                    Step 3
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="nav-link" href="#step-4">
-                                                    Step 4
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="nav-link" href="#step-5">
-                                                    Step 5
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="nav-link" href="#step-6">
-                                                    Step 6
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="nav-link" href="#step-7">
-                                                    Step 7
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="nav-link" href="#step-8">
-                                                    Step 8
+                                                <a class="nav-link" href="#step-{{$step_count+1}}">
+                                                    Step {{$step_count+1}}
                                                 </a>
                                             </li>
                                         </ul>
@@ -363,89 +349,37 @@
                                                 </div> -->
                                             </div>
                                             
-                                            <div id="step-2" class="tab-pane" role="tabpanel" style="text-align: center;">
-                                                <p class="neon-text neon_planet display inline-block">
-                                                    Is your cash-app sending limit more than
-                                                </p>
-                                                 <p class="numberText neon-text inline-block font-size-20">$7500</p>
-                                                 <p class="neon-text neon_planet display inline-block">
-                                                   per week?
-                                                </p>
-                                                </br></br>
-                                                <div class="form-check">
-                                                    <input type="hidden" name="cash_app_send_limit" class="cash_app_send_limit" required>
-                                                    <button type="button" class="btn btn-success neon-text next-btn yes-btn" data-input=".cash_app_send_limit">Yes</button>
-                                                    <button class="btn btn-danger neon-text neon-text-danger no-btn next-btn" data-input=".cash_app_send_limit">No</button>
-                                                    <!-- <input class="form-check-input next-btn" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                                    <label class="form-check-label neon-text" for="exampleRadios1">
-                                                        Yes
-                                                    </label> -->
+                                            @php
+                                                $step_count = 1;
+                                            @endphp
+                                            @foreach ($questions as $index => $item)
+                                                @php
+                                                    $step_count = $step_count+1;
+                                                @endphp
+                                                <div id="step-{{$step_count}}" class="tab-pane" role="tabpanel" style="text-align: center;">
+                                                    {{-- <p class="neon-text neon_planet display inline-block">
+                                                        
+                                                    </p> --}}
+                                                    <p class="numberText neon-text inline-block font-size-20">{{$item->question}}</p>
+                                                    </br></br>
+                                                    <div class="form-check">
+                                                        @if ($item->type == 'image')
+                                                            <input type="file" name="{{$item->name}}" class="input-form-modal form-control form-control-lg" required>
+                                                            <button style="margin-top: 10px;" type="button" class="button px-4 next-btn"><span class="neon-text">Next</span></button>
+                                                        @endif
+                                                        @if ($item->type == 'string' && $item->yes_no == 0)
+                                                            <input name="{{$item->name}}" class="input-form-modal form-control form-control-lg input--style-1 transparent-input neon-text-danger input-name" type="text" value="{{old('name')}}" autocomplete="off" maxlength="30" required>
+                                                            <button style="margin-top: 10px;" type="button" class="button px-4 next-btn"><span class="neon-text">Next</span></button>        
+                                                        @elseif($item->type == 'string' && $item->yes_no == 1)
+                                                            <input type="hidden" name="{{$item->name}}" class="cash_app_send_limit" required>
+                                                            <button type="button" class="btn btn-success neon-text next-btn yes-btn" data-input=".cash_app_send_limit">Yes</button>
+                                                            <button class="btn btn-danger neon-text neon-text-danger no-btn next-btn" data-input=".cash_app_send_limit">No</button>
+                                                        @endif
+                                                    </div>
+                                                    </br>
                                                 </div>
-                                                </br>
-                                                <!-- <div class="form-check">
-                                                    <input class="form-check-input back-btn" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                                                    <label class="form-check-label neon-text neon-text-danger" for="exampleRadios2">
-                                                        No
-                                                    </label>
-                                                </div> -->
-                                            </div>
-                                            <div id="step-3" class="tab-pane" role="tabpanel" style="text-align: center;">
-                                                <p class="neon-text neon_planetdisplay inline-block">
-                                                    Upload your image
-                                                </p>
-                                                </br></br>
-                                                <div class="form-check">
-                                                    <input type="file" name="image_1" class="input-form-modal form-control form-control-lg us_citizen" required>
-                                                    <button style="margin-top: 10px;" type="button" class="button px-4 next-btn"><span class="neon-text">Next</span></button>
-                                                </div>
-                                                </br>
-                                            </div>
-                                            
-                                            <div id="step-4" class="tab-pane" role="tabpanel" style="text-align: center;">
-                                                <p class="neon-text neon_planetdisplay inline-block">
-                                                    Are you US citizen?
-                                                </p>
-                                                </br></br>
-                                                <div class="form-check">
-                                                    <input type="hidden" name="us_citizen" class="us_citizen" required>
-                                                    <button type="button" class="btn btn-success neon-text next-btn yes-btn" data-input=".us_citizen">Yes</button>
-                                                    <button class="btn btn-danger neon-text neon-text-danger no-btn next-btn" data-input=".us_citizen">No</button>
-                                                </div>
-                                                </br>
-                                            </div>
-                                            <div id="step-5" class="tab-pane" role="tabpanel" style="text-align: center;">
                                                 
-                                                <p class="neon-text neon_planetdisplay inline-block">
-                                                    Upload your image
-                                                </p>
-                                                </br></br>
-                                                <div class="form-check">
-                                                    <input type="file" name="image_2" class="input-form-modal form-control form-control-lg us_citizen" required>
-                                                    <button style="margin-top: 10px;" type="button" class="button px-4 next-btn"><span class="neon-text">Next</span></button>
-                                                </div>
-                                                </br>
-                                            </div>
-                                            <div id="step-6" class="tab-pane" role="tabpanel" style="text-align: center;">
-                                                <p class="neon-text neon_planetdisplay inline-block">IS your credit score above</p>
-                                                <p class="numberText neon-text inline-block font-size-20">650?</p>
-                                                </br></br>
-                                                <div class="form-check">
-                                                    <input type="hidden" name="extra_1" class="extra_1" required>
-                                                    <button class="btn btn-success neon-text next-btn yes-btn" data-input=".extra_1">Yes</button>
-                                                    <button class="btn btn-danger neon-text neon-text-danger no-btn next-btn" data-input=".extra_1">No</button>
-                                                </div>
-                                                </br>
-                                            </div>
-                                            <div id="step-7" class="tab-pane" role="tabpanel" style="text-align: center;">
-                                                <p class="neon-text neon_planetdisplay inline-block">Have you ever been charged with a felony or crime in the last five years?</p>
-                                                </br></br>
-                                                <div class="form-check">
-                                                    <input type="hidden" name="crime" class="crime" required >
-                                                    <button class="btn btn-success neon-text next-btn yes-btn" data-input=".crime">Yes</button>
-                                                    <button class="btn btn-danger neon-text neon-text-danger no-btn next-btn" data-input=".crime">No</button>
-                                                </div>
-                                                </br>
-                                            </div>
+                                            @endforeach
                                             <div id="step-8" class="tab-pane" role="tabpanel" style="text-align: center;">
                                                 <p class="numberText neon-text neon_planetdisplay inline-block input-name-text">
                                                     Perfect what could be the best phone number to reach out to you?
