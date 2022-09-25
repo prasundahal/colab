@@ -11,5 +11,6 @@ error_log
 .htaccess
 index.php
 server.php
+vendor
 /.idea
 /.vscode
