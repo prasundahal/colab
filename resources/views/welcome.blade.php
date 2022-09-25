@@ -251,7 +251,7 @@
 <body>
     <div class="page-wrapper font-robo">
         <video autoplay muted loop id="myVideo">
-            <source src="{{url('images/fin.mp4')}}" type="video/mp4">
+            <source src="{{asset('images/fin.mp4')}}" type="video/mp4">
             Your browser does not support HTML5 video.
         </video>
         <div class="page-wrapper font-robo">
