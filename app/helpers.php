@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Message;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
@@ -44,14 +43,11 @@ if (!function_exists('generateRandomString')) {
         return $randomString;
     }
 }
-if (!function_exists('getNewMessagesCount')) {
-    function getNewMessagesCount() {
-        // $message_count = Cache::remember('messagesCount','60*60*24', function(){
-            return Message::where('is_new',0)->count();
-        // });
-        // return $message_count;
-    }
-}
+// if (!function_exists('getNewMessagesCount')) {
+//     function getNewMessagesCount() {
+//         // $message_count = Cache::remember('messagesCount','60*60*24', function(){
+//         return Message::where('is_new',0)->count();
+// }
 if (!function_exists('LogFunction')) {
     function LogFunction($message) {
         Log::info($message);
