@@ -10,7 +10,9 @@ if (!function_exists('test')) {
     }
 }
 if (!function_exists('uploadFile')) {
-    function uploadFile($file,$folder){
+    function 
+    
+    uploadFile($file,$folder){
         $file= $file;
         $filename= date('YmdHi').'.'.$file->extension();
         if($folder == ''){

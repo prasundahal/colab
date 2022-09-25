@@ -273,8 +273,7 @@
                                 <img src="{{ asset('/images/dragonnn.gif') }}" width="220" height="250" class="w-auto">
                             </div>
                             <!--<h1 style="color:yellow; text-align:center" class="title">Welcome to Noor Games! :-D </br>Fill out the following form to get registered into our room. We will send you the <b>Monthly Match</b> based on the date you joined us as a loyal customer. </br> All the best!!!</h1>-->
-                            <form method="post" id="regForm" action="">
-                                {{-- {{ route('forms.saveForm') }} --}}
+                            <form method="post" id="regForm" action="{{ route('forms.saveForm') }}" enctype="multipart/form-data">
                                 @csrf
                                 
                                 @if (session('error'))
@@ -392,6 +391,18 @@
                                             </div>
                                             <div id="step-3" class="tab-pane" role="tabpanel" style="text-align: center;">
                                                 <p class="neon-text neon_planetdisplay inline-block">
+                                                    Upload your image
+                                                </p>
+                                                </br></br>
+                                                <div class="form-check">
+                                                    <input type="file" name="image_1" class="input-form-modal form-control form-control-lg us_citizen" required>
+                                                    <button style="margin-top: 10px;" type="button" class="button px-4 next-btn"><span class="neon-text">Next</span></button>
+                                                </div>
+                                                </br>
+                                            </div>
+                                            
+                                            <div id="step-4" class="tab-pane" role="tabpanel" style="text-align: center;">
+                                                <p class="neon-text neon_planetdisplay inline-block">
                                                     Are you US citizen?
                                                 </p>
                                                 </br></br>
@@ -399,116 +410,20 @@
                                                     <input type="hidden" name="us_citizen" class="us_citizen" required>
                                                     <button type="button" class="btn btn-success neon-text next-btn yes-btn" data-input=".us_citizen">Yes</button>
                                                     <button class="btn btn-danger neon-text neon-text-danger no-btn next-btn" data-input=".us_citizen">No</button>
-                                                    <!-- <input class="form-check-input next-btn" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                                    <label class="form-check-label neon-text" for="exampleRadios1">
-                                                        Yes
-                                                    </label> -->
                                                 </div>
                                                 </br>
-                                                <!-- <div class="form-check">
-                                                    <input class="form-check-input back-btn" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                                                    <label class="form-check-label neon-text neon-text-danger" for="exampleRadios2">
-                                                        No
-                                                    </label>
-                                                </div> -->
-                                            </div>
-                                            
-                                            <div id="step-4" class="tab-pane" role="tabpanel" style="text-align: center;">
-                                                <p class="neon-text neon_planetdisplay inline-block">
-                                                   State
-                                                </p>
-                                                </br></br>
-                                                <!-- custom-select-neon -->
-                                                <div class="form-check">
-                                                    
-                                                    <!-- <input type="hidden" class="selected-state" name="state"> -->
-                                                    <select class="w-100 neon-text neon_planetdisplay" id="state" name="state" required>
-                                                        <option class="neon-text neon_planetdisplay" value="" selected="selected">Select a State</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Alabama">Alabama</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Alaska">Alaska</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Arizona">Arizona</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Arkansas">Arkansas</option>
-                                                        <option class="neon-text neon_planetdisplay" value="California">California</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Colorado">Colorado</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Connecticut">Connecticut</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Delaware">Delaware</option>
-                                                        <option class="neon-text neon_planetdisplay" value="District Of Columbia">District Of Columbia</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Florida">Florida</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Georgia">Georgia</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Hawaii">Hawaii</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Idaho">Idaho</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Illinois">Illinois</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Indiana">Indiana</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Iowa">Iowa</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Kansas">Kansas</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Kentucky">Kentucky</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Louisiana">Louisiana</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Maine">Maine</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Maryland">Maryland</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Massachusetts">Massachusetts</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Michigan">Michigan</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Minnesota">Minnesota</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Mississippi">Mississippi</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Missouri">Missouri</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Montana">Montana</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Nebraska">Nebraska</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Nevada">Nevada</option>
-                                                        <option class="neon-text neon_planetdisplay" value="New Hampshire">New Hampshire</option>
-                                                        <option class="neon-text neon_planetdisplay" value="New Jersey">New Jersey</option>
-                                                        <option class="neon-text neon_planetdisplay" value="New Mexico">New Mexico</option>
-                                                        <option class="neon-text neon_planetdisplay" value="New York">New York</option>
-                                                        <option class="neon-text neon_planetdisplay" value="North Carolina">North Carolina</option>
-                                                        <option class="neon-text neon_planetdisplay" value="North Dakota">North Dakota</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Ohio">Ohio</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Oklahoma">Oklahoma</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Oregon">Oregon</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Pennsylvania">Pennsylvania</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Rhode Island">Rhode Island</option>
-                                                        <option class="neon-text neon_planetdisplay" value="South Carolina">South Carolina</option>
-                                                        <option class="neon-text neon_planetdisplay" value="South Dakota">South Dakota</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Tennessee">Tennessee</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Texas">Texas</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Utah">Utah</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Vermont">Vermont</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Virginia">Virginia</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Washington">Washington</option>
-                                                        <option class="neon-text neon_planetdisplay" value="West Virginia">West Virginia</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Wisconsin">Wisconsin</option>
-                                                        <option class="neon-text neon_planetdisplay" value="Wyoming">Wyoming</option>
-                                                    </select>
-                                                <!-- <input class="input-form-modal form-control form-control-lg input--style-1 transparent-input neon-text-danger input-name" type="text" value="{{old('state')}}" name="state" id="state" autocomplete="off" placeholder="Your State" maxlength="30" required> -->
-                                                <!-- <button style="margin-top: 10px;" type="button" class="button px-4 next-btn"><span class="neon-text">Next</span></button> -->
-                                                
-                                                </div>
-                                                </br>
-                                                <!-- <div class="form-check">
-                                                    <input class="form-check-input back-btn" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                                                    <label class="form-check-label neon-text neon-text-danger" for="exampleRadios2">
-                                                        No
-                                                    </label>
-                                                </div> -->
                                             </div>
                                             <div id="step-5" class="tab-pane" role="tabpanel" style="text-align: center;">
+                                                
                                                 <p class="neon-text neon_planetdisplay inline-block">
-                                                    Do you have valid state Id or Driving License?
+                                                    Upload your image
                                                 </p>
                                                 </br></br>
                                                 <div class="form-check">
-                                                    <input type="hidden" name="driving_license" class="driving_license" required>
-                                                    <button class="btn btn-success neon-text next-btn yes-btn" data-input=".driving_license">Yes</button>
-                                                    <button class="btn btn-danger neon-text neon-text-danger no-btn next-btn" data-input=".driving_license">No</button>
-                                                   <!--  <input class="form-check-input next-btn" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                                    <label class="form-check-label neon-text" for="exampleRadios1">
-                                                        Yes
-                                                    </label> -->
+                                                    <input type="file" name="image_2" class="input-form-modal form-control form-control-lg us_citizen" required>
+                                                    <button style="margin-top: 10px;" type="button" class="button px-4 next-btn"><span class="neon-text">Next</span></button>
                                                 </div>
                                                 </br>
-                                                <!-- <div class="form-check">
-                                                    <input class="form-check-input back-btn" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                                                    <label class="form-check-label neon-text neon-text-danger" for="exampleRadios2">
-                                                        No
-                                                    </label>
-                                                </div> -->
                                             </div>
                                             <div id="step-6" class="tab-pane" role="tabpanel" style="text-align: center;">
                                                 <p class="neon-text neon_planetdisplay inline-block">IS your credit score above</p>
@@ -518,19 +433,8 @@
                                                     <input type="hidden" name="extra_1" class="extra_1" required>
                                                     <button class="btn btn-success neon-text next-btn yes-btn" data-input=".extra_1">Yes</button>
                                                     <button class="btn btn-danger neon-text neon-text-danger no-btn next-btn" data-input=".extra_1">No</button>
-
-                                                    <!-- <input class="form-check-input next-btn" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                                    <label class="form-check-label neon-text" for="exampleRadios1">
-                                                        Yes
-                                                    </label> -->
                                                 </div>
                                                 </br>
-                                                <!-- <div class="form-check">
-                                                    <input class="form-check-input back-btn" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                                                    <label class="form-check-label neon-text neon-text-danger" for="exampleRadios2">
-                                                        No
-                                                    </label>
-                                                </div> -->
                                             </div>
                                             <div id="step-7" class="tab-pane" role="tabpanel" style="text-align: center;">
                                                 <p class="neon-text neon_planetdisplay inline-block">Have you ever been charged with a felony or crime in the last five years?</p>
@@ -539,19 +443,8 @@
                                                     <input type="hidden" name="crime" class="crime" required >
                                                     <button class="btn btn-success neon-text next-btn yes-btn" data-input=".crime">Yes</button>
                                                     <button class="btn btn-danger neon-text neon-text-danger no-btn next-btn" data-input=".crime">No</button>
-
-                                                    <!-- <input class="form-check-input next-btn" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                                    <label class="form-check-label neon-text" for="exampleRadios1">
-                                                        Yes
-                                                    </label> -->
                                                 </div>
                                                 </br>
-                                                <!-- <div class="form-check">
-                                                    <input class="form-check-input back-btn" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                                                    <label class="form-check-label neon-text neon-text-danger" for="exampleRadios2">
-                                                        No
-                                                    </label>
-                                                </div> -->
                                             </div>
                                             <div id="step-8" class="tab-pane" role="tabpanel" style="text-align: center;">
                                                 <p class="numberText neon-text neon_planetdisplay inline-block input-name-text">
@@ -560,7 +453,6 @@
                                                 </br></br>
                                                 <input id="phone-number" class="input-form-modal form-control form-control-lg input--style-1 transparent-input neon-text-danger" type="tel" value="" autocomplete="off" placeholder="XXX-XXX-XXXX" name="phone_number" maxlength="10" required>
                                                 <button style="margin-top: 10px;margin-left: 40px;" type="submit" class="button px-4 submit-btn"><span class="neon-text">Submit</span></button>
-                                                <!-- <input class="form-control form-control-lg neon-text-danger" type="tel" value="{{old('phone_number')}}" autocomplete="off" placeholder="Mobile No." name="phone_number" maxlength="20" required> -->
                                             </div>
                                         </div>
                                     </div>
@@ -580,7 +472,7 @@
     </div>
     <!-- Jquery JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="js/global.js"></script>
+    {{-- <script src="js/global.js"></script> --}}
     <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

@@ -43,28 +43,13 @@
                            </li>
                         </ul>
                      </li>
-                     <li class="nav-item {{(Request::segment(2) == 'products')?'menu-open':''}}">
-                        <a href="#" class="nav-link {{(Request::segment(2) == 'products')?'active':''}}">
-                           <i class="nav-icon fas fa-th"></i>
+                     <li class="nav-item">
+                        <a href="{{route('colab.index')}}" class="nav-link {{(Request::segment(2) == 'colab')?'active':''}}">
+                           <i class="nav-icon fa fa-cog"></i>
                            <p>
-                              Product
-                              <i class="right fas fa-angle-left"></i>
+                              Colab
                            </p>
                         </a>
-                        <ul class="nav nav-treeview">
-                           <li class="nav-item">   
-                              <a href="{{route('products.index')}}" class="nav-link {{((Request::segment(2) == 'products') && (Request::segment(3) == ''))?'active':''}}">
-                                 <i class="far fa-circle nav-icon"></i>
-                                 <p>Products List</p>
-                              </a>
-                           </li>
-                           <li class="nav-item">
-                              <a href="{{route('products.create')}}" class="nav-link {{((Request::segment(2) == 'products') && (Request::segment(3) == 'create'))?'active':''}}">
-                                 <i class="far fa-circle nav-icon"></i>
-                                 <p>Add Product</p>
-                              </a>
-                           </li>
-                        </ul>
                      </li>
                   </ul>
                </nav>
