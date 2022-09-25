@@ -1,7 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ColabController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,14 +14,30 @@ use App\Http\Controllers\ColabController;
 |
 */
 
+Auth::routes();
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/success', function () {
-    return view('success');
+
+Route::get('/logout', function () {
+    Auth::logout();
+	return redirect(route('login'));
 });
 
-Route::get('test', [ColabController::class, 'test'])->name('test');
-Route::post('add/form', [ColabController::class, 'store'])->name('forms.stores');
-Route::post('saveForm', [ColabController::class, 'store'])->name('forms.saveForm');
-Route::post('saveNote', [ColabController::class, 'saveNote'])->name('forms.saveNote');
+Route::get('clear', function () {
+	Artisan::call('cache:clear');
+	Artisan::call('config:clear');
+	Artisan::call('config:cache');
+	Artisan::call('route:cache');
+	// return redirect()->back();
+});
+// Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
