@@ -80,7 +80,7 @@
    <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
    <script src="{{asset('plugins/jquery-knob/jquery.knob.min.js')}}"></script>
    <script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
-   <script src="{{asset('js/adminlte2167.js')}}?v=3.2.0"></script>
+   <script src="{{asset('js/adminlte2167.js')}}"></script>
    <script src="{{asset('plugins/toastr/toastr.min.js')}}"></script>
    <script src="{{asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
    <!-- <script src="{{asset('plugins/chart.js')}}/Chart.min.js')}}"></script> -->
