@@ -9,3 +9,4 @@
         'question_8',
         'question_9',
         'question_10',
+        ALTER TABLE `formnumbers` ADD `details` LONGTEXT NULL AFTER `id`;

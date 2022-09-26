@@ -19,4 +19,9 @@ class Question extends Model
         'level',
         'created_by'
     ];
+
+    public function creator(){
+        return $this->hasOne(User::class,'id','created_by');
+    }
+
 }

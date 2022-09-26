@@ -35,25 +35,32 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <form action="{{route('testimonials.update',[$item->id])}}" method="post" enctype="multipart/form-data">
+                    <form action="{{route('questions.update',[$item->id])}}" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="_method" value="PUT">
                         @csrf
 
                         <div class="card-body">
                             <div class="form-group">
+                                <label for="question">Question</label>
+                                <input type="text" class="form-control" id="question" placeholder="Enter Question" name="question" value="{{$item->question}}">
+                            </div>
+                            <div class="form-group">
                                 <label for="name">Name</label>
                                 <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" value="{{$item->name}}">
                             </div>
                             <div class="form-group">
-                                <label for="Description">Description</label>
-                                <textarea class="form-control summernote" name="description" id="Description" cols="30" rows="10" placeholder="Description">{{$item->description}}</textarea>
+                                <label for="type">Type</label>
+                                <select name="type" id="type" class="form-control">
+                                    <option {{($item->type == 'string')?'selected':''}} value="string">String</option>
+                                    <option {{($item->type == 'image')?'selected':''}} value="image">Image</option>
+                                </select>
                             </div>
                             <div class="form-group">
-                                <label for="image">Image</label>
-                                <input type="file" class="form-control" id="image" name="image" value="">
-                                @if(!empty($item->image) && fileExists($item->image,'testimonials'))
-                                    <img src="{{asset('images/testimonials/'.$item->image)}}" alt="" class="w-100 form-image">
-                                @endif
+                                <label for="yes_no">Is this a yes / no question ?</label>
+                                <select name="yes_no" id="yes_no" class="form-control">
+                                    <option {{($item->yes_no == 1)?'selected':''}} value="1">Yes</option>
+                                    <option {{($item->yes_no == 0)?'selected':''}} value="0">No</option>
+                                </select>
                             </div>
                         </div>
 

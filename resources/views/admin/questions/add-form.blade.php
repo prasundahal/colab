@@ -35,21 +35,31 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <form action="{{route('testimonials.store')}}" method="post" enctype="multipart/form-data">
+                    <form action="{{route('questions.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
 
                         <div class="card-body">
+                            <div class="form-group">
+                                <label for="question">Question</label>
+                                <input type="text" class="form-control" id="question" placeholder="Enter Question" name="question" value="">
+                            </div>
                             <div class="form-group">
                                 <label for="name">Name</label>
                                 <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" value="">
                             </div>
                             <div class="form-group">
-                                <label for="Description">Description</label>
-                                <textarea class="form-control" name="description" id="Description" cols="30" rows="10" placeholder="Description"></textarea>
+                                <label for="type">Type</label>
+                                <select name="type" id="type" class="form-control">
+                                    <option value="string">String</option>
+                                    <option value="image">Image</option>
+                                </select>
                             </div>
                             <div class="form-group">
-                                <label for="image">Image</label>
-                                <input type="file" class="form-control" id="image" name="image" value="">
+                                <label for="yes_no">Is this a yes / no question ?</label>
+                                <select name="yes_no" id="yes_no" class="form-control">
+                                    <option value="1">Yes</option>
+                                    <option value="1">No</option>
+                                </select>
                             </div>
                         </div>
 

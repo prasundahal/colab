@@ -12,18 +12,9 @@ class FormNumber extends Model
     protected $table = 'formnumbers';
     
     protected $fillable = [
+        'details',
         'phone_number',
-        'us_citizen',
-        'cash_app',
-        'driving_license',
-        'cash_app_score',
-        'cash_app_send_limit',
-        'state',
-        'crime',
-        'extra_1',
-        'extra_2',
-        'image_1',
-        'image_2',
-        'nore',
+        'name',
+        'note',
     ];
 }

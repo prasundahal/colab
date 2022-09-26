@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\FormNumber;
+use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class ColabController extends Controller
 {
     public function store(Request $request){
-
         $validator = Validator::make($request->all(), [
             'phone_number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|unique:formnumbers,phone_number',
             'name' => 'required'
@@ -19,33 +19,37 @@ class ColabController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withInput()->with('error', $validator->messages()->first());
         }
-        $image_1 = '';
-        $image_2 = '';
-        if($request->file('image_1')){
-            $uploadFile = uploadFile($request->file('image_1'),'form-images'); //uploadFile from helper.php
-            $image_1 = $uploadFile;
+        $data = [];
+        $questions = Question::get();
+        $post_data = $request->all();
+        $name  = $request->name;
+        $phone  = $request->phone_number;
+        foreach($questions as $question){
+            if(key_exists($question->name,$post_data)){
+                $answer = $post_data[$question->name];
+                $image  = '';
+                if($question->type == 'image'){
+                    $uploadFile = uploadFile($request->file($question->name),'form-images'); //uploadFile from helper.php
+                    $image = $uploadFile;
+                    $answer = '';
+                }
+                $data[] = [
+                    'question' => $question->question,
+                    'name' => $question->name,
+                    'type' => $question->type,
+                    'image' => $image,
+                    'answer' => $answer
+                ];
+            }else{
+                echo 'asdf';
+            }
         }
-        if($request->file('image_2')){
-            $uploadFile2 = uploadFile($request->file('image_2'),'form-images'); //uploadFile from helper.php
-            $image_2 = $uploadFile2;
-        }
-        $formdata = array(
-            'cash_app_send_limit'       =>   isset($request->cash_app_send_limit)?($request->cash_app_send_limit):null,
-            'us_citizen'       =>   isset($request->us_citizen)?($request->us_citizen):null,
-            'cash_app'       =>   isset($request->cash_app)?($request->cash_app):null,
-            'driving_license'       =>   isset($request->driving_license)?($request->driving_license):null,
-            'cash_app_score'       =>   isset($request->cash_app_score)?($request->cash_app_score):null,
-            'cash_app_send_limit'       =>   isset($request->cash_app_send_limit)?($request->cash_app_send_limit):null,
-            'state'       =>   isset($request->state)?($request->state):null,
-            'crime'       =>   isset($request->crime)?($request->crime):null,
-            'extra_1'       =>   isset($request->extra_1)?($request->extra_1):null,
-            'extra_2'       =>   isset($request->name)?($request->name):null,
-            'image_1'       =>   $image_1,
-            'image_2'       =>   $image_2,
-            'phone_number'       =>   isset($request->phone_number)?($request->phone_number):null
-        
+        $json = array(
+            'details' => json_encode($data),
+            'name' => $name,
+            'phone_number' => $phone
         );
-        $sql = FormNumber::create($formdata);  
+        $sql = FormNumber::create($json);  
         if(!$sql){
             return redirect()->back()->withInput()->with('error', $sql);
         }

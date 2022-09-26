@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('title')
-Testimonials List
+Questions List
 @endsection
 
 @section('content')
@@ -11,12 +11,12 @@ Testimonials List
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Testimonials List</h1>
+              <h1>Questions List</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">Testimonials List</li>
+                <li class="breadcrumb-item active">Questions List</li>
               </ol>
             </div>
           </div>
@@ -34,8 +34,11 @@ Testimonials List
                     <thead>
                       <tr>
                         <th width="10px">SN</th>
-                        <th width="100px">Image</th>
+                        <th width="100px">Question</th>
                         <th>Name</th>
+                        <th>Type</th>
+                        <th>Yes / No</th>
+                        <th>Creator</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -48,16 +51,15 @@ Testimonials List
                             @foreach($items as $a => $b)
                                 <tr>
                                     <td>{{$a+1}}</td>
-                                    <td>
-                                      @if(!empty($b->image) && fileExists($b->image,'testimonials'))
-                                          <img src="{{asset('images/testimonials/'.$b->image)}}" alt="" class="form-image">
-                                      @endif
-                                    </td>
+                                    <td>{{$b->question}}</td>
                                     <td>{{$b->name}}</td>
+                                    <td>{{$b->type}}</td>
+                                    <td>{{$b->yes_no}}</td>
+                                    <td>{{$b->created_by}}</td>
                                     <td class="d-flex">
 
-                                        <a href="{{route('testimonials.edit',[$b->id])}}" class="btn btn-primary mr-1"><i class="fas fa-edit"></i> </a>
-                                        <form id="delete-form-{{$b->id}}" action="{{ route('testimonials.destroy' , $b->id)}}" method="POST">
+                                        <a href="{{route('questions.edit',[$b->id])}}" class="btn btn-primary mr-1"><i class="fas fa-edit"></i> </a>
+                                        <form id="delete-form-{{$b->id}}" action="{{ route('questions.destroy' , $b->id)}}" method="POST">
                                           @csrf
                                           <input type="hidden" name="_method" value="DELETE" />
                                           <button class="btn btn-danger delete-item" data-form="#delete-form-{{$b->id}}"><i class="fas fa-trash"></i></button>

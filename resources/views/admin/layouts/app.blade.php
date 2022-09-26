@@ -25,6 +25,9 @@
       <link rel="stylesheet" href="{{asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
       <link rel="stylesheet" href="{{asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
       <link rel="stylesheet" href="{{asset('css/style.css')}}">
+      <script>
+         var base_url = window.location.origin;
+      </script>
    </head>
    <body class="hold-transition sidebar-mini layout-fixed">
       <div class="wrapper">
@@ -83,6 +86,7 @@
    <script src="{{asset('js/adminlte2167.js')}}"></script>
    <script src="{{asset('plugins/toastr/toastr.min.js')}}"></script>
    <script src="{{asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+   <script src="{{asset('js/editable.js')}}"></script>
    <!-- <script src="{{asset('plugins/chart.js')}}/Chart.min.js')}}"></script> -->
    <!-- <script src="{{asset('plugins/sparklines/sparkline.js')}}"></script> -->
    <!-- <script src="{{asset('plugins/jqvmap/jquery.vmap.min.js')}}"></script> -->

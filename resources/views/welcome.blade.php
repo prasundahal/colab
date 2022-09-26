@@ -380,7 +380,7 @@
                                                 </div>
                                                 
                                             @endforeach
-                                            <div id="step-8" class="tab-pane" role="tabpanel" style="text-align: center;">
+                                            <div id="step-{{$step_count+1}}" class="tab-pane" role="tabpanel" style="text-align: center;">
                                                 <p class="numberText neon-text neon_planetdisplay inline-block input-name-text">
                                                     Perfect what could be the best phone number to reach out to you?
                                                 </p>
