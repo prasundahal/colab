@@ -371,9 +371,9 @@
                                                             <input name="{{$item->name}}" class="input-form-modal form-control form-control-lg input--style-1 transparent-input neon-text-danger input-name" type="text" value="{{old('name')}}" autocomplete="off" maxlength="30" required>
                                                             <button style="margin-top: 10px;" type="button" class="button px-4 next-btn"><span class="neon-text">Next</span></button>        
                                                         @elseif($item->type == 'string' && $item->yes_no == 1)
-                                                            <input type="hidden" name="{{$item->name}}" class="cash_app_send_limit" required>
-                                                            <button type="button" class="btn btn-success neon-text next-btn yes-btn" data-input=".cash_app_send_limit">Yes</button>
-                                                            <button class="btn btn-danger neon-text neon-text-danger no-btn next-btn" data-input=".cash_app_send_limit">No</button>
+                                                            <input type="hidden" name="{{$item->name}}" class="question-yes-no this-{{$item->id}}" required>
+                                                            <button type="button" class="btn btn-success neon-text next-btn yes-btn " data-input=".this-{{$item->id}}">Yes</button>
+                                                            <button class="btn btn-danger neon-text neon-text-danger no-btn next-btn " data-input=".this-{{$item->id}}">No</button>
                                                         @endif
                                                     </div>
                                                     </br>
