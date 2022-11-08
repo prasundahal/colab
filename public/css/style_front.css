@@ -1,0 +1,278 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  /* height: 100vh; */
+  font-family: fantasy;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+h1 {
+  background: linear-gradient(to left, #ff0000 0%, #ffff00 50%, #ff0000 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+#main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0, 0, -10, 0.6);
+  width: 50vw;
+  /* height: fit-content; */
+}
+
+.flex-item {
+  width: 100%;
+}
+
+.logo {
+  display: contents;
+}
+/*  */
+
+h1 {
+  text-align: center;
+}
+
+input {
+  background-color: transparent !important;
+  padding: 10px;
+  width: 100%;
+  font-size: 17px;
+  font-family: cursive;
+  /* border: 1px solid white; */
+  /* color: white; */
+  /* border-radius: 10px; */
+  background: linear-gradient(to left, #e4e23e 0%, #ffff00 50%, #ffea00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.border-gradient:focus-visible{
+  background-color: #ff0000;
+}
+/* Mark input boxes that gets an error on validation: */
+input.invalid {
+border: 2px solid red;
+}
+
+/* Hide all steps by default: */
+.tab {
+  display: none;
+  width: inherit;
+}
+
+button {
+  background-color: transparent;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 17px;
+  font-family: Raleway;
+  cursor: pointer;
+  border: 1px solid white;
+  border-radius: 25px;
+  background: linear-gradient(to left, #743ad5, #d53a9d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.border-gradient {
+  border: 10px solid;
+  border-image-slice: 1;
+  border-width: 2px;
+  height: 3em;
+}
+
+.border-gradient-purple {
+  border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+.step.active {
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: brown;
+}
+
+@media only screen and (max-width: 660px) {
+  #main-container {
+    width: 100%;
+  }
+  .rainbow {
+    padding: 15px !important;
+  }
+  .upload-img{
+    font-size: 2rem !important;
+  }
+}
+
+.gradient-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  margin: auto;
+  max-width: 45em;
+  position: relative;
+  box-sizing: border-box;
+  color: #fff;
+  background: #000;
+  background-clip: padding-box;
+  /* !importanté */
+  border: solid 5px transparent;
+  /* !importanté */
+  border-radius: 1em;
+  z-index: 1 !important;
+}
+
+
+
+
+/*  */
+
+
+
+
+
+/*  */
+/*  */
+/*  */
+/*  */
+
+
+@-webkit-keyframes rotate {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+.rainbow {
+  position: relative;
+  z-index: -1;
+  /* width: 400px; */
+  /* height: 300px; */
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 72px;
+}
+.rainbow::before {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  left: -50%;
+  top: -50%;
+  width: 200%;
+  height: 200%;
+  background-color: #399953;
+  background-repeat: no-repeat;
+  background-size: 50% 50%, 50% 50%;
+  background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+  background-image: linear-gradient(to left, #743ad5, #d53a9d),linear-gradient(to left, #743ad5, #d53a9d),linear-gradient(to left, #743ad5, #d53a9d),linear-gradient(to left, #743ad5, #d53a9d);
+  -webkit-animation: rotate 4s linear infinite;
+          animation: rotate 4s linear infinite;
+}
+.rainbow::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 6px;
+  top: 6px;
+  width: calc(100% - 12px);
+  height: calc(100% - 12px);
+  background: rgba(9, 9, 9, 0.98);
+  border-radius: 5px;
+}
+
+#blah{
+  width: 25%;
+}
+
+.step{
+  background-color:violet;
+}
+
+
+.upload-img{
+    width: 20rem;
+    text-align: center;
+    font-size: 173%;
+    text-align: center;
+    min-width: 14vw;
+    margin-right: 25px;
+    padding-top: 3%;
+    background: linear-gradient(to left, #743ad5, #d53a9d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.upload-img:hover{
+  transition: all ease 0.5s;
+  box-shadow: -2px 9px 51px 8px rgba(81,70,207,0.69);
+  -webkit-box-shadow: -2px 9px 51px 8px rgba(81,70,207,0.69);
+  -moz-box-shadow: -2px 9px 51px 8px rgba(81,70,207,0.69);
+  
+}
+
+.border-gradient:hover{
+  box-shadow: -2px 9px 51px 8px rgba(81,70,207,0.69);
+-webkit-box-shadow: -2px 9px 51px 8px rgba(81,70,207,0.69);
+-moz-box-shadow: -2px 9px 51px 8px rgba(81,70,207,0.69);
+}
+
+.btn:hover{
+  box-shadow: -2px 9px 51px 8px rgba(81,70,207,0.69);
+-webkit-box-shadow: -2px 9px 51px 8px rgba(81,70,207,0.69);
+-moz-box-shadow: -2px 9px 51px 8px rgba(81,70,207,0.69);
+}
+
+#invalid-pop{
+  display: none;
+  color: red;
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 7px;
+  margin-bottom: 25px;
+}

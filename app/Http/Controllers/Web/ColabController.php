@@ -11,21 +11,27 @@ use Illuminate\Support\Facades\Validator;
 class ColabController extends Controller
 {
     public function store(Request $request){
-        $validator = Validator::make($request->all(), [
-            'phone_number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|unique:formnumbers,phone_number',
-            'name' => 'required'
-        ]);
+        // dd($request->all());
+        // $validator = Validator::make($request->all(), [
+        //     'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|unique:formnumbers,phone_number',
+        //     'name' => 'required'
+        // ]);
 
-        if ($validator->fails()) {
-            return redirect()->back()->withInput()->with('error', $validator->messages()->first());
-        }
+        // if ($validator->fails()) {
+        //     return redirect()->back()->withInput()->with('error', $validator->messages()->first());
+        // }
         $data = [];
         $questions = Question::get();
         $post_data = $request->all();
-        $name  = $request->name;
-        $phone  = $request->phone_number;
+        // $name  = $request->name;
+        // $phone  = $request->phone_number;
         foreach($questions as $question){
             if(key_exists($question->name,$post_data)){
+                if($question->type == 'number'){
+                    if(!is_numeric($post_data[$question->name])){
+                        return redirect()->back()->withInput()->with('error',$question->question.' must be a number.');
+                    }
+                }
                 $answer = $post_data[$question->name];
                 $image  = '';
                 if($question->type == 'image'){
@@ -40,14 +46,13 @@ class ColabController extends Controller
                     'image' => $image,
                     'answer' => $answer
                 ];
-            }else{
-                echo 'asdf';
             }
+            // else{
+            //     echo 'asdf';
+            // }
         }
         $json = array(
-            'details' => json_encode($data),
-            'name' => $name,
-            'phone_number' => $phone
+            'details' => json_encode($data)
         );
         $sql = FormNumber::create($json);  
         if(!$sql){

@@ -35,8 +35,6 @@ Colab List
                       <tr>
                         <th width="10px">SN</th>
                         <th scope="10px">Date</th>
-                        <th scope="10px">Name</th>
-                        <th scope="10px">Number</th>
                         <th scope="10px">Note</th>
                         <th scope="10px">Actions</th>
                       </tr>
@@ -52,14 +50,6 @@ Colab List
                                     <td>{{$a+1}}</td>
                                     <td data-editable="false">
                                       {{date_format($num->created_at, 'M d,Y H:i:s')}}
-                                    </td>
-                                    <td data-editable="false">
-                                      {{ucwords($num->name)}}
-                                    </td>
-                                    <td data-editable="false">
-                                      <a href="tel:{{$num->phone_number}}">
-                                        {{$num->phone_number}}
-                                      </a>
                                     </td>
                                     <td class="class" data-id="{{$num->id}}">
                                       {{($num->note)}}
@@ -92,7 +82,7 @@ Colab List
 
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title"></h4>
+              <h4 class="modal-title">Details</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -122,7 +112,7 @@ Colab List
         var name = $(this).attr('data-name');
         var phone_number = $(this).attr('data-phone_number');
         var cid = $(this).attr('data-id');
-        $('.modal-title').text(name + '-' + phone_number);
+        // $('.modal-title').text(name + '-' + phone_number);
         var url = base_url + "/admin/colab/detail/" + cid;
         console.log(url);
         $.get(url, function(data) {
