@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="icon" href="https://caandv.com/public/images/g9.webp">
+    <link rel="icon" href="{{ asset('/images/g9.webp') }}">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -18,7 +18,7 @@
         </div>
         <div class="flex-item logo">
             <video width="150rem" height="240" >
-            <source src="https://caandv.com/public/images/animation.gif.mp4" type="video/mp4">
+            <source src="{{ asset('/images/animation.gif.mp4') }}" type="video/mp4">
           </video>
         </div>
         @php
@@ -75,7 +75,7 @@
                     />
                     <label class="border-gradient border-gradient-purple upload-img" for="imgInp">Choose Image</label>
                     
-                    <img id="blah" src="https://caandv.com/public/images/noimage.jpeg" alt="your image" />
+                    <img id="blah" src="{{ asset('/images/noimage.jpeg') }}" alt="your image" />
                 
                 </p>
             @endif
