@@ -93,7 +93,6 @@
             @elseif($item->type == 'number')
             <p>
                 <input
-                type="number"
                 class="border-gradient border-gradient-purple"
                     placeholder="{{$item->question}}"
                     oninput="this.className = ''"
@@ -104,7 +103,6 @@
             @elseif($item->type == 'email')
             <p>
                 <input
-                type="email"
                 class="border-gradient border-gradient-purple"
                     placeholder="{{$item->question}}"
                     oninput="this.className = ''"
@@ -132,6 +130,7 @@
           </div>
           <!-- Circles which indicates the steps of the form: -->
           <div style="text-align: center; margin-top: 40px">
+            <span class="step"></span>
             <span class="step"></span>
             <span class="step"></span>
             <span class="step"></span>
