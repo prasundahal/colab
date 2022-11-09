@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Mail\UserRegistrationMail;
+use App\Models\FormDetails;
 use App\Models\FormNumber;
 use App\Models\Question;
 use Illuminate\Http\Request;
@@ -13,30 +14,32 @@ use Illuminate\Support\Facades\Validator;
 class ColabController extends Controller
 {
     public function store(Request $request){
-        // dd($request->all());
-        // $validator = Validator::make($request->all(), [
-        //     'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|unique:formnumbers,phone_number',
-        //     'name' => 'required'
-        // ]);
-
-        // if ($validator->fails()) {
-        //     return redirect()->back()->withInput()->with('error', $validator->messages()->first());
-        // }
         $data = [];
         $user_email = '';
         $user_name = '';
+        $user_phone = '';
         $questions = Question::get();
         $post_data = $request->all();
-        // $name  = $request->name;
-        // $phone  = $request->phone_number;
         foreach($questions as $question){
             if(key_exists($question->name,$post_data)){
                 if($question->type == 'number'){
                     if(!is_numeric($post_data[$question->name])){
                         return redirect()->back()->withInput()->with('error',$question->question.' must be a number.');
                     }
+                    if($question->name == 'phone' && strlen($post_data[$question->name]) < 10){
+                        return redirect()->back()->withInput()->with('error',$question->question.' must be a of 10 digit.');
+                    }
+                    if($question->name == "phone"){
+                        if(FormNumber::where('phone_number',$post_data[$question->name])->count() > 0){
+                            return redirect()->back()->withInput()->with('error','This number already exists.');
+                        }
+                        $user_phone = $post_data[$question->name];
+                    }
                 }
                 if($question->type == 'email'){
+                    if(FormNumber::where('email',$post_data[$question->name])->count() > 0){
+                        return redirect()->back()->withInput()->with('error','This email already exists.');
+                    }
                     $user_email = $post_data[$question->name];
                 }
                 if($question->type == 'string' && $question->name == "full_name"){
@@ -62,6 +65,9 @@ class ColabController extends Controller
             // }
         }
         $json = array(
+            'email' => $user_email,
+            'name' => $user_name,
+            'phone_number' => $user_phone,
             'details' => json_encode($data)
         );
         $sql = FormNumber::create($json);  
@@ -75,21 +81,21 @@ class ColabController extends Controller
             $details = array(
                 'message' => $sendtexttouser,
                 'subject' => 'Welcome To The Family',
-                'title' => 'Noor Games',
+                'title' => 'Canndv Games',
                 'theme' => '/public/images/animation.gif.mp4'
             );
-            Mail::to($user_email)->send(new UserRegistrationMail(json_encode($details)));
+            // Mail::to($user_email)->send(new UserRegistrationMail(json_encode($details)));
         }            
 
-        $admin_email = 'baros73190@lidely.com';
+        $admin_email = 'prasundahal@gmail.com';
         $sendtexttouser ='New Registration Alert <b>Name : '.$user_name.'</b> Email : '.$user_email.'</b>';
         $details = array(
             'message' => $sendtexttouser,
             'subject' => 'New Registration Alert',
-            'title' => 'Noor Games',
+            'title' => 'Canndv Games',
             'theme' => '/images/animation.gif.mp4'
         );
-        Mail::to($admin_email)->send(new UserRegistrationMail(json_encode($details)));
+        // Mail::to($admin_email)->send(new UserRegistrationMail(json_encode($details)));
       
         // $str = $request->phone_number;
         // $usernumber = preg_replace('/[^0-9]/','',$str);

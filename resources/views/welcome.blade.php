@@ -91,18 +91,21 @@
                     />
                 </p>
             @elseif($item->type == 'number')
-            <p>
-                <input
-                class="border-gradient border-gradient-purple"
-                    placeholder="{{$item->question}}"
-                    oninput="this.className = ''"
-                    name="{{$item->name}}"
-                    required
-                />
-            </p>
+              <p>
+                  <input
+                  type="tel"
+                  class="border-gradient border-gradient-purple"
+                      placeholder="{{$item->question}}"
+                      oninput="this.className = ''"
+                      name="{{$item->name}}"
+                      maxlength="10"
+                      required
+                  />
+              </p>
             @elseif($item->type == 'email')
             <p>
                 <input
+                type="email"
                 class="border-gradient border-gradient-purple"
                     placeholder="{{$item->question}}"
                     oninput="this.className = ''"
@@ -130,11 +133,9 @@
           </div>
           <!-- Circles which indicates the steps of the form: -->
           <div style="text-align: center; margin-top: 40px">
-            <span class="step"></span>
-            <span class="step"></span>
-            <span class="step"></span>
-            <span class="step"></span>
-            <span class="step"></span>
+            @for ($i = 1; $i < $step_count; $i++)
+              <span class="step"></span>
+            @endfor
           </div>
         </form>
     </div>

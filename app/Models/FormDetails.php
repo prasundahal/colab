@@ -5,17 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FormNumber extends Model
+class FormDetails extends Model
 {
     use HasFactory;
-    
-    protected $table = 'formnumbers';
+
     
     protected $fillable = [
-        'details',
-        'phone_number',
-        'name',
+        'form_id',
         'email',
-        'note',
+        'phone',
     ];
+
+    public function form(){
+        return $this->hasOne(FormNumber::class,'id','form_id');
+    }
 }
