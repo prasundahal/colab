@@ -13,5 +13,6 @@ index.php
 server.php
 vendor
 public/images
+storage/logs
 /.idea
 /.vscode
