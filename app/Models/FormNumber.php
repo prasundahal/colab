@@ -17,5 +17,6 @@ class FormNumber extends Model
         'name',
         'email',
         'note',
+        'session_id'
     ];
 }
