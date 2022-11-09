@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Validator;
 class ColabController extends Controller
 {
     public function store(Request $request){
-        dd(exec('getmac'));
         $data = [];
         $user_email = '';
         $user_name = '';
@@ -70,7 +69,7 @@ class ColabController extends Controller
             'name' => $user_name,
             'phone_number' => $user_phone,
             'details' => json_encode($data),
-            'session_id' => exec('getmac')
+            'session_id' => session()->getId()
         );
         $sql = FormNumber::create($json);  
         if(!$sql){

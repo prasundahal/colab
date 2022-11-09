@@ -30,10 +30,8 @@
         <div class="flex-item">
           
             <?php
-              $session_id = exec('getmac');
-              echo $session_id;
-              echo 'as';
-              die;
+            // $session_id = exec('getmac');
+              $session_id = session()->getId();
               if(App\Models\FormNumber::where('session_id',$session_id)->count() > 0){
                 echo '<h1>You have already filled the form.</h1>';
               }else{
