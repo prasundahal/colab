@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Web\ColabController;
+use App\Mail\UserRegistrationMail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*

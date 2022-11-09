@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Mail\UserRegistrationMail;
 use App\Models\FormNumber;
 use App\Models\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class ColabController extends Controller
@@ -21,6 +23,8 @@ class ColabController extends Controller
         //     return redirect()->back()->withInput()->with('error', $validator->messages()->first());
         // }
         $data = [];
+        $user_email = '';
+        $user_name = '';
         $questions = Question::get();
         $post_data = $request->all();
         // $name  = $request->name;
@@ -31,6 +35,12 @@ class ColabController extends Controller
                     if(!is_numeric($post_data[$question->name])){
                         return redirect()->back()->withInput()->with('error',$question->question.' must be a number.');
                     }
+                }
+                if($question->type == 'email'){
+                    $user_email = $post_data[$question->name];
+                }
+                if($question->type == 'string' && $question->name == ""){
+                    $user_name = $post_data[$question->name];
                 }
                 $answer = $post_data[$question->name];
                 $image  = '';
@@ -58,9 +68,29 @@ class ColabController extends Controller
         if(!$sql){
             return redirect()->back()->withInput()->with('error', $sql);
         }
+
+        if(!empty($user_email)){            
+            $sendtexttouser ='Welcome '.$user_name.', to Noor Games family.We have received your details. Someone from collab team will reach back to you based on your eligibility.
+            Note: Do not  bother asking to Sasha when will they reach out.';
+            $details = array(
+                'message' => $sendtexttouser,
+                'subject' => 'Welcome To The Family',
+                'title' => 'Noor Games',
+                'theme' => '/images/animation.gif.mp4'
+            );
+            Mail::to($user_email)->send(new UserRegistrationMail(json_encode($details)));
+        }            
+
+        $admin_email = 'detale7186@pamaweb.com';
+        $sendtexttouser ='New Registration Alert <b>Name : '.$user_name.'</b> Email : '.$user_email.'</b>';
+        $details = array(
+            'message' => $sendtexttouser,
+            'subject' => 'New Registration Alert',
+            'title' => 'Noor Games',
+            'theme' => '/images/animation.gif.mp4'
+        );
+        Mail::to($admin_email)->send(new UserRegistrationMail(json_encode($details)));
       
-        // $sendtexttouser ='Welcome'.' ' . $request->name . ' ' .', to Noor Games family.We have received your details. Someone from collab team will reach back to you based on your eligibility.
-        //    Note: Do not  bother asking to Sasha when will they reach out.';
         // $str = $request->phone_number;
         // $usernumber = preg_replace('/[^0-9]/','',$str);
         // $usernumberint = (int) filter_var($usernumber, FILTER_SANITIZE_NUMBER_INT);

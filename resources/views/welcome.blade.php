@@ -93,6 +93,18 @@
             @elseif($item->type == 'number')
             <p>
                 <input
+                type="number"
+                class="border-gradient border-gradient-purple"
+                    placeholder="{{$item->question}}"
+                    oninput="this.className = ''"
+                    name="{{$item->name}}"
+                    required
+                />
+            </p>
+            @elseif($item->type == 'email')
+            <p>
+                <input
+                type="email"
                 class="border-gradient border-gradient-purple"
                     placeholder="{{$item->question}}"
                     oninput="this.className = ''"
