@@ -81,7 +81,7 @@ class ColabController extends Controller
             Mail::to($user_email)->send(new UserRegistrationMail(json_encode($details)));
         }            
 
-        $admin_email = 'detale7186@pamaweb.com';
+        $admin_email = 'baros73190@lidely.com';
         $sendtexttouser ='New Registration Alert <b>Name : '.$user_name.'</b> Email : '.$user_email.'</b>';
         $details = array(
             'message' => $sendtexttouser,
