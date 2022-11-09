@@ -85,7 +85,7 @@ class ColabController extends Controller
                 'title' => 'Canndv Games',
                 'theme' => '/public/images/animation.gif.mp4'
             );
-            // Mail::to($user_email)->send(new UserRegistrationMail(json_encode($details)));
+            Mail::to($user_email)->send(new UserRegistrationMail(json_encode($details)));
         }            
 
         $admin_email = 'prasundahal@gmail.com';
@@ -96,7 +96,7 @@ class ColabController extends Controller
             'title' => 'Canndv Games',
             'theme' => '/images/animation.gif.mp4'
         );
-        // Mail::to($admin_email)->send(new UserRegistrationMail(json_encode($details)));
+        Mail::to($admin_email)->send(new UserRegistrationMail(json_encode($details)));
       
         // $str = $request->phone_number;
         // $usernumber = preg_replace('/[^0-9]/','',$str);
