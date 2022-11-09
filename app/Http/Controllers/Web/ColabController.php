@@ -39,7 +39,7 @@ class ColabController extends Controller
                 if($question->type == 'email'){
                     $user_email = $post_data[$question->name];
                 }
-                if($question->type == 'string' && $question->name == ""){
+                if($question->type == 'string' && $question->name == "full_name"){
                     $user_name = $post_data[$question->name];
                 }
                 $answer = $post_data[$question->name];
