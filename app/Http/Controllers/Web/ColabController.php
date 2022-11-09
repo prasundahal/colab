@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Validator;
 class ColabController extends Controller
 {
     public function store(Request $request){
+        dd(exec('getmac'));
         $data = [];
         $user_email = '';
         $user_name = '';
