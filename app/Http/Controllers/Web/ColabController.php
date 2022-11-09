@@ -76,7 +76,7 @@ class ColabController extends Controller
                 'message' => $sendtexttouser,
                 'subject' => 'Welcome To The Family',
                 'title' => 'Noor Games',
-                'theme' => '/images/animation.gif.mp4'
+                'theme' => '/public/images/animation.gif.mp4'
             );
             Mail::to($user_email)->send(new UserRegistrationMail(json_encode($details)));
         }            
