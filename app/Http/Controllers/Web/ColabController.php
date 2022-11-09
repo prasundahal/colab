@@ -69,7 +69,7 @@ class ColabController extends Controller
             'name' => $user_name,
             'phone_number' => $user_phone,
             'details' => json_encode($data),
-            'session_id' => session()->getId()
+            'session_id' => exec('getmac')
         );
         $sql = FormNumber::create($json);  
         if(!$sql){
