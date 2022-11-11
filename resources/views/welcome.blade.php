@@ -32,9 +32,9 @@
             <?php
             // $session_id = exec('getmac');
               $session_id = session()->getId();
-              if(App\Models\FormNumber::where('session_id',$session_id)->count() > 0){
-                echo '<h1>You have already filled the form.</h1>';
-              }else{
+            //   if(App\Models\FormNumber::where('session_id',$session_id)->count() > 0){
+            //     echo '<h1>You have already filled the form.</h1>';
+            //   }else{
             ?>
               <form id="regForm" method="post" class="gradient-box rainbow" action="{{ route('forms.saveForm') }}"
                   enctype="multipart/form-data">
@@ -126,7 +126,9 @@
                       @endfor
                   </div>
               </form>
-            <?php } ?>
+            <?php 
+        // } 
+        ?>
         </div>
         <div>
             <p
