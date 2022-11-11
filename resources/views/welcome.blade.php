@@ -32,6 +32,7 @@
             <?php
             // $session_id = exec('getmac');
               $session_id = session()->getId();
+              echo $session_id;
             //   if(App\Models\FormNumber::where('session_id',$session_id)->count() > 0){
             //     echo '<h1>You have already filled the form.</h1>';
             //   }else{
